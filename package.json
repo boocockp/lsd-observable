@@ -1,7 +1,7 @@
 {
-  "name": "lsd-events",
-  "description": "lsd-events",
-  "version": "0.0.2",
+  "name": "lsd-observable",
+  "description": "lsd-observable",
+  "version": "0.0.1-1",
   "scripts": {
     "build": "babel main -d dist",
     "test": "echo \"Error: no test specified\" && exit 1"
