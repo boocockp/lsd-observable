@@ -1,17 +1,13 @@
-module.exports = class ObservableData {
-    constructor(initialValue) {
+module.exports = class ObservableEvent {
+    constructor() {
         this._listeners = []
-        this._value = initialValue
-        this.set = this.set.bind(this)
+        this._latestEvent = undefined
     }
 
-    get value() { return this._value }
-    set value(data) {
-        this.set(data)
-    }
+    get latestEvent() { return this._latestEvent }
 
-    set(data) {
-        this._value = data
+    send(data) {
+        this._latestEvent = data
         this._listeners.map(l => l(data) )
     }
 
@@ -23,9 +19,6 @@ module.exports = class ObservableData {
         }
         for( const l of listeners) {
             this._listeners.push(l)
-            if (this._value !== undefined) {
-                l(this._value)
-            }
         }
     }
 

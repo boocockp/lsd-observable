@@ -1,4 +1,4 @@
 module.exports = {
-    ObservableData: require('./events/ObservableData'),
-    bindFunctions: require('./events/Util').bindFunctions
+    ObservableData: require('./observable/ObservableValue'),
+    bindFunctions: require('./util/Util').bindFunctions
 }
