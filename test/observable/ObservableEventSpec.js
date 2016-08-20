@@ -1,5 +1,6 @@
 const chai = require('chai')
-const ObservableEvent = require('../../main/observable/ObservableEvent')
+const {ObservableValue, ObservableEvent} = require('../../main')
+const {List} = require('immutable')
 
 const should = chai.should()
 
@@ -49,6 +50,44 @@ describe("ObservableEvent", function () {
         ob.latestEvent.should.eql([44])
         listener1.values.should.eql([[22, 33], [44]])
         listener2.values.should.eql([22, 33, 44])
+    })
+
+    it("sends immutable collections as one value to normal listeners and expanded to 'sendFlatTo' listeners", function () {
+        ob.sendTo(storeIn(listener1))
+        ob.sendFlatTo(storeIn(listener2))
+
+        const listA = List([22, 33])
+        const listB = List([44])
+
+        ob.send(listA)
+        ob.send(listB)
+        ob.latestEvent.should.eql(listB)
+        listener1.values.should.eql([listA, listB])
+        listener2.values.should.eql([22, 33, 44])
+    })
+
+    it("accepts ObservableEvent and ObservableValue as listeners", function () {
+        const obValue = new ObservableValue()
+        const obEvent = new ObservableEvent()
+
+        ob.sendTo(obValue, obEvent)
+        ob.send(22)
+        ob.send(33)
+
+        obValue.value.should.eql(33)
+        obEvent.latestEvent.should.eql(33)
+    })
+
+    it("accepts ObservableEvent and ObservableValue as flat listeners", function () {
+        const obValue = new ObservableValue()
+        const obEvent = new ObservableEvent()
+
+        ob.sendFlatTo(obValue, obEvent)
+        ob.send([33])
+        ob.send([33, 44])
+
+        obValue.value.should.eql(44)
+        obEvent.latestEvent.should.eql(44)
     })
 
     it("throws for listeners that are not functions and does not add any listeners", function () {

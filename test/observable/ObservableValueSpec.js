@@ -1,5 +1,5 @@
 const chai = require('chai')
-const ObservableValue = require('../../main/observable/ObservableValue')
+const {ObservableValue, ObservableEvent} = require('../../main')
 
 const should = chai.should()
 
@@ -45,6 +45,18 @@ describe("ObservableValue", function () {
         ob.value.should.eql(44)
         listener1.values.should.eql([33, 44])
         listener2.values.should.eql([33, 44])
+    })
+
+    it("accepts ObservableEvent and ObservableValue as listeners", function () {
+        const obValue = new ObservableValue()
+        const obEvent = new ObservableEvent()
+
+        ob.sendTo(obValue, obEvent)
+        ob.value = 22
+        ob.value = 33
+
+        obValue.value.should.eql(33)
+        obEvent.latestEvent.should.eql(33)
     })
 
     it("throws for listeners that are not functions and does not add any listeners", function () {
