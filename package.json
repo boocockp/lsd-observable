@@ -1,11 +1,11 @@
 {
   "name": "lsd-observable",
   "description": "lsd-observable",
-  "version": "0.0.1-2",
+  "version": "0.0.1-3",
   "scripts": {
     "build": "babel main -d dist",
     "build-dev": "npm run build && npm version prerelease --no-git-tag",
-    "test": " mocha --recursive --ui bdd test"
+    "test": "mocha --recursive --ui bdd test"
   },
   "main": "dist/index.js",
   "dependencies": {},

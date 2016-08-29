@@ -1,10 +1,12 @@
 const chai = require('chai')
-const Util = require('../../main/util/Util')
+const {bindFunctions} = require('../../main')
+
+chai.should()
 
 describe("Util", function () {
     it("bindFunctions binds only public functions to this", function () {
         const obj = new class {
-            constructor() { Util.bindFunctions(this) }
+            constructor() { bindFunctions(this) }
             get a() { return "a"}
             b(x) { this._b = x }
             _c(y) { this._cc = y }
