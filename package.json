@@ -2,8 +2,10 @@
   "name": "lsd-observable",
   "description": "Very simple observables for events and values",
   "author": "Paul Boocock <paulb@ashridgetech.com>",
-  "version": "0.1.0",
-  "files": [ "dist"],
+  "version": "0.1.1",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "babel main -d dist",
     "build-dev": "npm run build && npm version prerelease --no-git-tag",
