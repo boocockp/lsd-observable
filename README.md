@@ -14,7 +14,7 @@ It holds a value that can be set and read at any time with the `value` property.
 You can add listener callbacks with the `sendTo` method.
 Listeners receive the current value as soon as they subscribe.
 
-It is a little like a Subject in Rx.
+It is a little like a Subject in [Rx](https://github.com/Reactive-Extensions/RxJS).
 
 ### ObservableEvent
 This class is intended for events that need to be sent when they occur to another object to act on.
@@ -25,7 +25,7 @@ There is also a convenience method `sendFlatTo` that expands arrays or collectio
 and sends each element to the listeners separately.  
 There is no `value` property but a `latestEvent` property is provided for debugging and testing.
 
-It is a little like an ordinary Observable in Rx.
+It is a little like an ordinary Observable in [Rx](https://github.com/Reactive-Extensions/RxJS).
 
 ### Util
 
