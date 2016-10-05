@@ -96,4 +96,18 @@ describe("ObservableEvent", function () {
         ob.send(42)
         listener1.values.should.eql([])
     })
+
+    it("stops sending", function () {
+        const obEvent = new ObservableEvent()
+
+        ob.sendTo(obEvent)
+        ob.send(33)
+
+        obEvent.latestEvent.should.eql(33)
+
+        ob.stopSending()
+        ob.send(44)
+
+        obEvent.latestEvent.should.eql(33)
+    })
 })

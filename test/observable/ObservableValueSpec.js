@@ -66,4 +66,19 @@ describe("ObservableValue", function () {
         listener1.values.should.eql([])
 
     })
+
+    it("stops sending", function () {
+        const obValue = new ObservableValue()
+
+        ob.sendTo(obValue)
+        ob.value = 33
+
+        obValue.value.should.eql(33)
+
+        ob.stopSending()
+        ob.value = 44
+
+        obValue.value.should.eql(33)
+    })
+
 })

@@ -32,6 +32,10 @@ class ObservableBase {
         return listenerFns
     }
 
+    stopSending() {
+        this._listeners = []
+    }
+
 }
 
 module.exports = {ObservableBase, listenerFn}
